@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar Brasil — Inteligência para brasileiros na China</title>
+<meta name="description" content="Inteligência semanal para brasileiros na China. Embaixada, MRE, Copa do Mundo, vistos, cultura e muito mais.">
+<meta property="og:title" content="Radar Brasil">
+<meta property="og:description" content="Inteligência para brasileiros na China — digest semanal toda segunda-feira.">
+<meta name="theme-color" content="#009C3B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#f0efea;
+  --t1:#1a1a1a;--t2:#555;--t3:#999;
+  --b:rgba(0,0,0,0.1);--bm:rgba(0,0,0,0.2);
+  --green:#009C3B;--green-d:#085041;--green-l:#E1F5EE;--green-m:#9FE1CB;
+  --gold:#BA7517;--gold-l:#FAEEDA;
+  --blue:#0C447C;--blue-l:#E6F1FB;
+  --purple:#3C3489;--purple-l:#EEEDFE;
+  --r:8px;--rl:12px
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--t1);background:var(--bg);min-height:100vh}
+
+/* PAGE LAYOUT */
+.page{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+/* HEADER */
+.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:0.5px solid var(--b)}
+.header-left{display:flex;flex-direction:column;gap:10px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-ring{width:40px;height:40px;flex-shrink:0}
+.logo-ring svg{width:40px;height:40px}
+@keyframes spin-cw{from{stroke-dashoffset:0}to{stroke-dashoffset:-100}}
+@keyframes spin-ccw{from{stroke-dashoffset:0}to{stroke-dashoffset:100}}
+.logo-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--t1);letter-spacing:-0.01em;line-height:1}
+.logo-sub{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:0.07em;margin-top:3px}
+.live-row{display:flex;align-items:center;gap:7px;padding-left:2px}
+.pulse-wrap{position:relative;width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pulse-ring{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--green);opacity:0.2;animation:ring 2s ease-out infinite}
+.pulse-core{width:9px;height:9px;border-radius:50%;background:var(--green);position:relative;z-index:1}
+@keyframes ring{0%{transform:scale(0.5);opacity:0.35}100%{transform:scale(2.2);opacity:0}}
+.live-label{font-size:11px;color:var(--green);font-weight:500;letter-spacing:0.03em}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.next-send{font-size:11px;color:var(--t3);text-align:right;line-height:1.5}
+.next-send strong{color:var(--t2);font-weight:500}
+
+/* SUBSCRIBE HERO */
+.sub-hero{background:var(--green-l);border:0.5px solid var(--green-m);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.sub-hero-text{flex:1;min-width:200px}
+.sub-hero-text h2{font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:var(--green-d);margin-bottom:3px}
+.sub-hero-text p{font-size:12px;color:var(--green-d);opacity:0.8;line-height:1.5}
+.sub-hero-form{display:flex;gap:8px;flex-wrap:wrap}
+.sub-hero-form input{font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 12px;border-radius:var(--r);border:0.5px solid var(--green-m);background:white;color:var(--t1);outline:none;min-width:140px}
+.sub-hero-form input:focus{border-color:var(--green)}
+.sub-hero-form input::placeholder{color:var(--t3)}
+.sub-btn{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:8px 16px;border-radius:var(--r);border:none;background:var(--green);color:white;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.sub-btn:hover{background:var(--green-d)}
+.sub-btn:active{transform:scale(0.98)}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--t3);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';flex:1;height:0.5px;background:var(--b)}
+
+/* TOPICS */
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.pill{font-size:12px;padding:4px 12px;border-radius:100px;border:0.5px solid var(--b);cursor:pointer;transition:all 0.15s;color:var(--t2);background:var(--bg);user-select:none}
+.pill.on{font-weight:500}
+.pill:hover:not(.on){background:var(--bg2)}
+
+/* ACTION BAR */
+.action-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+.btn{font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 15px;border-radius:var(--r);cursor:pointer;transition:all 0.15s;font-weight:400;border:0.5px solid var(--bm);background:var(--bg);color:var(--t1)}
+.btn:hover{background:var(--bg2)}
+.btn:active{transform:scale(0.98)}
+.btn-g{border-color:var(--green-m);background:var(--green-l);color:var(--green-d);font-weight:500}
+.btn-g:hover{background:var(--green-m)}
+
+/* NEWS GRID */
+.news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:1.5rem}
+@media(max-width:560px){.news-grid{grid-template-columns:1fr}}
+.card{background:var(--bg);border:0.5px solid var(--b);border-radius:var(--rl);padding:1rem 1.1rem;cursor:pointer;transition:all 0.15s;animation:fadeUp 0.3s ease both}
+.card:hover{border-color:var(--bm);transform:translateY(-1px)}
+.card.urgent{border-left:2.5px solid #E24B4A;border-radius:0 var(--rl) var(--rl) 0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card-tag{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.cdot{width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card-title{font-size:13.5px;font-weight:500;line-height:1.45;margin-bottom:6px;color:var(--t1)}
+.card-meta{font-size:11px;color:var(--t3);display:flex;justify-content:space-between;margin-bottom:6px}
+.card-summary{font-size:12px;color:var(--t2);line-height:1.6;padding-top:7px;border-top:0.5px solid var(--b)}
+.imp{display:inline-flex;gap:2px;align-items:center}
+.id{width:4px;height:4px;border-radius:50%;background:var(--b)}
+.idon{background:var(--gold)}
+
+/* DETAIL PANEL */
+.detail{background:var(--bg);border:0.5px solid var(--bm);border-radius:var(--rl);padding:1.5rem;margin-bottom:1.5rem;animation:fadeUp 0.2s ease}
+.detail h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:500;line-height:1.4;margin:6px 0 10px;color:var(--t1)}
+.detail-src{font-size:11px;color:var(--t3);margin-bottom:14px}
+.detail-body{font-size:13px;line-height:1.85;color:var(--t2)}
+.detail-foot{display:flex;gap:8px;margin-top:14px;padding-top:12px;border-top:0.5px solid var(--b);flex-wrap:wrap;align-items:center}
+.dclose{background:none;border:none;font-size:12px;cursor:pointer;color:var(--t3);margin-left:auto;padding:4px 8px;border-radius:var(--r)}
+.dclose:hover{background:var(--bg2)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green-d);color:var(--green-l);font-size:12px;padding:9px 20px;border-radius:100px;opacity:0;transition:opacity 0.25s;pointer-events:none;z-index:100;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.toast.show{opacity:1}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:50;align-items:center;justify-content:center;padding:1rem}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg);border-radius:var(--rl);padding:1.5rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:fadeUp 0.2s ease}
+.modal h3{font-size:14px;font-weight:500;color:var(--t1);margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{font-size:10px;padding:2px 8px;border-radius:100px;font-weight:500}
+.badge-ok{background:var(--green-l);color:var(--green-d)}
+.badge-ok2{background:var(--gold-l);color:#633806}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:14px;cursor:pointer;color:var(--t3);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--bg2)}
+.m-field-label{font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--t3);font-weight:500;margin-bottom:5px}
+.m-input{font-family:'DM Sans',sans-serif;font-size:13px;width:100%;padding:8px 11px;border-radius:var(--r);border:0.5px solid var(--b);background:var(--bg);color:var(--t1);outline:none}
+.m-input:focus{border-color:var(--bm)}
+.sub-item{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--b);font-size:12px}
+.sub-item:last-child{border-bottom:none}
+.sub-remove{background:none;border:none;cursor:pointer;font-size:11px;color:var(--t3);padding:2px 7px;border-radius:var(--r)}
+.sub-remove:hover{color:#A32D2D;background:#FCEBEB}
+.divider{height:0.5px;background:var(--b);margin:14px 0}
+.loc-row{display:flex;gap:6px;flex-wrap:wrap}
+
+/* LOADER */
+.loader{display:flex;gap:8px;align-items:center;padding:3rem;justify-content:center;color:var(--t3);font-size:13px}
+.spin{width:16px;height:16px;border:1.5px solid var(--b);border-top-color:var(--green);border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:3rem;color:var(--t3);font-size:13px;line-height:1.7}
+
+/* FOOTER */
+footer{margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid var(--b);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:var(--t3)}
+.footer-note{font-size:11px;color:var(--t3)}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <div class="logo-ring">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="16" stroke="#e8e8e8" stroke-width="2.5"/>
+            <circle cx="20" cy="20" r="16" stroke="#009C3B" stroke-width="2.5" stroke-linecap="round"
+              stroke-dasharray="34 66"
+              style="animation:spin-cw 2.4s linear infinite;transform-origin:20px 20px"/>
+            <circle cx="20" cy="20" r="16" stroke="#FFDF00" stroke-width="2.5" stroke-linecap="round"
+              stroke-dasharray="18 82"
+              style="animation:spin-ccw 2.8s linear infinite;transform-origin:20px 20px;animation-delay:-0.6s"/>
+            <circle cx="20" cy="20" r="16" stroke="#002776" stroke-width="2.5" stroke-linecap="round"
+              stroke-dasharray="11 89"
+              style="animation:spin-cw 3.6s linear infinite;transform-origin:20px 20px;animation-delay:-1.2s"/>
+            <circle cx="20" cy="20" r="16" stroke="#E24B4A" stroke-width="2.5" stroke-linecap="round"
+              stroke-dasharray="6 94"
+              style="animation:spin-ccw 3.6s linear infinite;transform-origin:20px 20px;animation-delay:-0.4s"/>
+            <circle cx="20" cy="20" r="5" fill="white"/>
+            <circle cx="20" cy="20" r="3" fill="#009C3B"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-name">Radar Brasil</div>
+          <div class="logo-sub">Inteligência para brasileiros na China</div>
+        </div>
+      </div>
+      <div class="live-row">
+        <div class="pulse-wrap"><div class="pulse-ring"></div><div class="pulse-core"></div></div>
+        <span class="live-label">ao vivo</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="next-send">Próximo digest<br><strong id="nextDate">—</strong><br><span style="font-size:10px">07:18 Pequim (CST)</span></div>
+    </div>
+  </div>
+
+  <!-- SUBSCRIBE HERO -->
+  <div class="sub-hero">
+    <div class="sub-hero-text">
+      <h2>Receba o digest toda segunda-feira</h2>
+      <p>Gratuito · 07:18 Pequim · Alertas urgentes em tempo real</p>
+    </div>
+    <div class="sub-hero-form">
+      <input type="text" id="heroName" placeholder="Seu nome" style="width:130px"/>
+      <input type="email" id="heroEmail" placeholder="seu@email.com" style="width:180px"/>
+      <button class="sub-btn" onclick="heroSubscribe()">Inscrever-se</button>
+    </div>
+  </div>
+
+  <!-- TOPICS -->
+  <div class="sec-label">Temas monitorados</div>
+  <div class="topics" id="topicBar"></div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+    <button class="btn btn-g" onclick="fetchNews()">&#8635; Atualizar agora</button>
+    <button class="btn" onclick="openModal('adminModal')">&#9881; Admin</button>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div id="detailPanel" style="display:none"></div>
+
+  <!-- NEWS -->
+  <div class="sec-label">Últimas atualizações</div>
+  <div id="newsGrid" class="news-grid"></div>
+  <div id="loader" class="loader" style="display:none"><div class="spin"></div>Buscando e analisando fontes…</div>
+
+  <footer>
+    <div class="footer-brand">Radar Brasil</div>
+    <div class="footer-note">Digest toda segunda · 07:18 Pequim · Powered by Claude AI</div>
+  </footer>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ADMIN MODAL (private) -->
+<div class="modal-bg" id="adminModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+    <h3>Gerenciar inscritos <span class="badge badge-ok2">admin</span></h3>
+    <p style="font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6">Adicione manualmente pessoas que pediram para receber o digest.</p>
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <input type="text" class="m-input" id="adminName" placeholder="Nome" style="flex:1;min-width:100px"/>
+      <input type="email" class="m-input" id="adminEmail" placeholder="email@exemplo.com" style="flex:2;min-width:150px"/>
+    </div>
+    <div style="margin-bottom:12px">
+      <div class="m-field-label" style="margin-bottom:5px">Localização</div>
+      <div class="loc-row" id="locPills">
+        <div class="pill on" data-loc="china" style="background:#E6F1FB;color:#0C447C;border-color:#85B7EB">Na China</div>
+        <div class="pill" data-loc="brasil">No Brasil</div>
+        <div class="pill" data-loc="outro">Outro</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <button class="btn btn-g" onclick="adminAdd()">Adicionar ↗</button>
+    </div>
+    <div id="subList" style="display:none">
+      <div class="divider"></div>
+      <div class="m-field-label" style="margin-bottom:8px">Inscritos <span id="subCount" style="color:var(--t3);font-weight:400"></span></div>
+      <div id="subItems"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOPICS=[
+  {id:'embaixada',  label:'Embaixada & Consulado',    color:'#085041', bg:'#E1F5EE', tag:'Consular'},
+  {id:'mre',        label:'MRE / Itamaraty',           color:'#085041', bg:'#E1F5EE', tag:'Diplomacia'},
+  {id:'ccbb',       label:'Conselho Cidadãos — Pequim',color:'#633806', bg:'#FAEEDA', tag:'CCBB'},
+  {id:'voto',       label:'Voto no Exterior',           color:'#085041', bg:'#E1F5EE', tag:'Eleições'},
+  {id:'bilateral',  label:'Relações Bilaterais',        color:'#3C3489', bg:'#EEEDFE', tag:'Relações'},
+  {id:'oportunidades',label:'Bolsas & Oportunidades',  color:'#3C3489', bg:'#EEEDFE', tag:'Oportunidades'},
+  {id:'emergencias',label:'Alertas Consulares',         color:'#085041', bg:'#E1F5EE', tag:'Urgente'},
+  {id:'negocios',   label:'Negócios & Economia',        color:'#3C3489', bg:'#EEEDFE', tag:'Economia'},
+  {id:'imigracao',  label:'Visto & Imigração',          color:'#3C3489', bg:'#EEEDFE', tag:'Imigração'},
+  {id:'esportes',   label:'Esportes (Copa, Olimpíadas)',color:'#0C447C', bg:'#E6F1FB', tag:'Esportes'},
+  {id:'cultural',   label:'Ano Cultural Brasil-China',  color:'#0C447C', bg:'#E6F1FB', tag:'Cultura'},
+  {id:'cultura_br', label:'Cultura & Entretenimento',   color:'#0C447C', bg:'#E6F1FB', tag:'Cultura BR'},
+];
+
+let active=['embaixada','mre','ccbb','esportes','imigracao','bilateral'];
+let arts=[];
+let subs=[];
+let activeLoc='china';
+try{subs=JSON.parse(localStorage.getItem('rbs_subs')||'[]');}catch(e){}
+
+function nextMonday(){
+  const d=new Date(),day=d.getDay(),diff=day===1?7:(8-day)%7||7;
+  d.setDate(d.getDate()+diff);
+  return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'});
+}
+document.getElementById('nextDate').textContent=nextMonday();
+
+function renderTopics(){
+  document.getElementById('topicBar').innerHTML=TOPICS.map(t=>{
+    const on=active.includes(t.id);
+    return`<div class="pill${on?' on':''}" style="${on?`background:${t.bg};color:${t.color};border-color:${t.color}55`:''}" onclick="toggleTopic('${t.id}')">${t.label}</div>`;
+  }).join('');
+}
+function toggleTopic(id){
+  active=active.includes(id)?active.filter(x=>x!==id):[...active,id];
+  renderTopics();
+}
+
+document.getElementById('locPills').addEventListener('click',e=>{
+  const p=e.target.closest('[data-loc]');if(!p)return;
+  activeLoc=p.dataset.loc;
+  document.querySelectorAll('#locPills .pill').forEach(x=>{x.classList.remove('on');x.removeAttribute('style');});
+  p.classList.add('on');p.style.cssText='background:#E6F1FB;color:#0C447C;border-color:#85B7EB';
+});
+
+function openModal(id){document.getElementById(id).classList.add('open');renderSubs();}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-bg').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
+});
+
+function heroSubscribe(){
+  const name=document.getElementById('heroName').value.trim();
+  const email=document.getElementById('heroEmail').value.trim();
+  if(!email||!email.includes('@')){toast('Insira um e-mail válido.');return;}
+  if(subs.find(s=>s.email===email)){toast('E-mail já inscrito!');return;}
+  subs.push({name:name||email.split('@')[0],email,loc:'?',date:new Date().toLocaleDateString('pt-BR')});
+  try{localStorage.setItem('rbs_subs',JSON.stringify(subs));}catch(e){}
+  document.getElementById('heroName').value='';
+  document.getElementById('heroEmail').value='';
+  toast('Inscrito com sucesso! Você receberá o próximo digest na segunda-feira.');
+}
+
+function adminAdd(){
+  const name=document.getElementById('adminName').value.trim();
+  const email=document.getElementById('adminEmail').value.trim();
+  if(!email||!email.includes('@')){toast('E-mail inválido.');return;}
+  if(subs.find(s=>s.email===email)){toast('Já na lista.');return;}
+  subs.push({name:name||email.split('@')[0],email,loc:activeLoc,date:new Date().toLocaleDateString('pt-BR')});
+  try{localStorage.setItem('rbs_subs',JSON.stringify(subs));}catch(e){}
+  document.getElementById('adminName').value='';
+  document.getElementById('adminEmail').value='';
+  renderSubs();toast(`${name||email} adicionado.`);
+}
+
+function renderSubs(){
+  const list=document.getElementById('subList');
+  if(!subs.length){list.style.display='none';return;}
+  list.style.display='block';
+  document.getElementById('subCount').textContent=`(${subs.length})`;
+  document.getElementById('subItems').innerHTML=subs.map((s,i)=>`
+    <div class="sub-item">
+      <span style="color:var(--t1)">${s.name}</span>
+      <span style="color:var(--t2);flex:1;margin:0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.email}</span>
+      <span style="color:var(--t3);font-size:10px;margin-right:8px">${s.loc}</span>
+      <button class="sub-remove" onclick="removeSub(${i})">remover</button>
+    </div>`).join('');
+}
+function removeSub(i){
+  subs.splice(i,1);
+  try{localStorage.setItem('rbs_subs',JSON.stringify(subs));}catch(e){}
+  renderSubs();toast('Removido.');
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+function imp(n){
+  return'<span class="imp">'+[1,2,3].map(i=>`<span class="id${i<=n?' idon':''}"></span>`).join('')+'</span>';
+}
+
+function renderCard(a,i){
+  const t=TOPICS.find(x=>x.id===a.topicId)||TOPICS[0];
+  return`<div class="card${a.importance===3?' urgent':''}" onclick="showDetail(${i})" style="animation-delay:${i*0.07}s">
+    <div class="card-tag" style="color:${t.color}"><span class="cdot" style="background:${t.color}"></span>${t.tag}</div>
+    <div class="card-title">${a.title}</div>
+    <div class="card-meta"><span>${a.source}</span>${imp(a.importance)}</div>
+    <div class="card-summary">${a.summary}</div>
+  </div>`;
+}
+
+function showDetail(i){
+  const a=arts[i];
+  const t=TOPICS.find(x=>x.id===a.topicId)||TOPICS[0];
+  const p=document.getElementById('detailPanel');
+  p.innerHTML=`<div class="detail">
+    <div class="card-tag" style="color:${t.color}"><span class="cdot" style="background:${t.color}"></span>${t.tag}</div>
+    <h2>${a.title}</h2>
+    <div class="detail-src">${a.source} · ${a.date}</div>
+    <div class="detail-body">${a.detail}</div>
+    <div class="detail-foot">
+      <button class="btn btn-g" onclick="askAI('Mais detalhes sobre: ${a.title.replace(/'/g,"\\'")}')">Aprofundar</button>
+      <button class="btn" onclick="askAI('O que devo fazer sobre: ${a.title.replace(/'/g,"\\'")}?')">O que fazer?</button>
+      <button class="dclose" onclick="document.getElementById('detailPanel').style.display='none'">✕ fechar</button>
+    </div>
+  </div>`;
+  p.style.display='block';
+  p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function askAI(q){
+  window.open('https://claude.ai/new?q='+encodeURIComponent(q),'_blank');
+}
+
+async function fetchNews(){
+  if(!active.length){toast('Selecione ao menos um tema.');return;}
+  const grid=document.getElementById('newsGrid');
+  const loader=document.getElementById('loader');
+  grid.innerHTML='';loader.style.display='flex';
+  document.getElementById('detailPanel').style.display='none';
+
+  const names=active.map(id=>TOPICS.find(t=>t.id===id)?.label).join(', ');
+  const prompt=`Você é analista de inteligência para brasileiros. Gere EXATAMENTE 6 itens relevantes sobre: ${names}.
+Público: brasileiros na China (Pequim, Xangai, Guangzhou) e acompanhando o Brasil de longe.
+Inclua: alertas consulares, MRE, visto, Copa 2026, eventos, bolsas, CCBB, economia.
+SOMENTE JSON sem markdown:
+{"articles":[{"title":"...","topicId":"${active[0]}","source":"fonte","date":"hoje","summary":"2 frases diretas","detail":"3 parágrafos completos com contexto, prazos e o que fazer","importance":2}]}
+topicId deve ser um de: ${active.join(',')}
+importance: 1=info, 2=relevante, 3=urgente`;
+
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        tools:[{type:'web_search_20250305',name:'web_search'}],
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    const text=data.content.map(b=>b.type==='text'?b.text:'').join('');
+    const clean=text.replace(/```json|```/g,'').trim();
+    arts=JSON.parse(clean).articles||[];
+    loader.style.display='none';
+    if(!arts.length){
+      grid.innerHTML='<div class="empty">Nenhum resultado encontrado.<br>Tente selecionar outros temas.</div>';
+      return;
+    }
+    grid.innerHTML=arts.map((a,i)=>renderCard(a,i)).join('');
+  }catch(e){
+    loader.style.display='none';
+    grid.innerHTML='<div class="empty">Erro ao buscar notícias.<br>Verifique sua conexão e tente novamente.</div>';
+  }
+}
+
+renderTopics();
+fetchNews();
+</script>
+</body>
+</html>
